@@ -1,5 +1,7 @@
 require 'rails_helper'
 
+
+
 RSpec.describe PostsController, type: :request do
   describe 'GET #index' do
     let(:user) { User.create(name: 'John Doe', photo: 'example.jpg', bio: 'Lorem ipsum') }

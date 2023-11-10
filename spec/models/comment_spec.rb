@@ -1,5 +1,6 @@
 require 'rails_helper'
 
+
 RSpec.describe Comment, type: :model do
   let(:user) { User.create(name: 'Test User') }
   let(:post) { Post.create(title: 'Sample Post') }
@@ -8,7 +9,7 @@ RSpec.describe Comment, type: :model do
     it 'is valid with valid attributes' do
       comment = Comment.new(
         author: user,
-        post: post,
+        post:,
         text: 'A valid comment',
         created_at: Time.now,
         updated_at: Time.now
@@ -17,7 +18,7 @@ RSpec.describe Comment, type: :model do
     end
 
     it 'is not valid without an author' do
-      comment = Comment.new(author: nil, post: post, text: 'A comment')
+      comment = Comment.new(author: nil, post:, text: 'A comment')
       expect(comment).not_to be_valid
     end
 

@@ -1,5 +1,7 @@
 require 'rails_helper'
 
+
+
 RSpec.describe User, type: :model do
   it 'is valid with a name' do
     user = User.new(name: 'John', posts_counter: 0)

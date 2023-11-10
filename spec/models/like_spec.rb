@@ -1,17 +1,18 @@
 require 'rails_helper'
 
+
 RSpec.describe Like, type: :model do
   let(:user) { User.create(name: 'Test User') }
   let(:post) { Post.create(title: 'Sample Post') }
 
   describe 'validations' do
     it 'is not valid without a user' do
-      like = Like.new(user: nil, post: post)
+      like = Like.new(user: nil, post:)
       expect(like).not_to be_valid
     end
 
     it 'is not valid without a post' do
-      like = Like.new(user: user, post: nil)
+      like = Like.new(user:, post: nil)
       expect(like).not_to be_valid
     end
   end

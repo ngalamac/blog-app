@@ -20,7 +20,7 @@
 </div>
 
 <div class="post-container">
-  <% @user.recent_posts(3).each do |post| %>
+  <% @user.recent_posts.each do |post| %>
     <%= link_to user_post_path(user_id: @user, id: post.id), style: "text-decoration: none;" do %>
       <div class="single-post">
         <div class="post-body">

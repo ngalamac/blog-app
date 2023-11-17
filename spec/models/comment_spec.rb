@@ -7,6 +7,6 @@ RSpec.describe Comment, type: :model do
     post = Post.create(author: user, title: 'Hello', text: 'This is my first post', comments_counter: 0,
                        likes_counter: 0)
 
-    expect { Comment.create(user: user, post: post, text: 'Hi Tom!') }.to change { post.reload.comments_counter }.by(1)
+    expect { Comment.create(user:, post:, text: 'Hi Tom!') }.to change { post.reload.comments_counter }.by(1)
   end
 end

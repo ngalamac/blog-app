@@ -1,6 +1,5 @@
 require 'rails_helper'
 
-
 RSpec.describe Post, type: :model do
   let(:user) { User.create(name: 'Tom', photo: 'https://unsplash.com/photos/F_-0BxGuVvo', bio: 'Teacher from Mexico.') }
 

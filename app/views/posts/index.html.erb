@@ -14,32 +14,31 @@
     <p>Number of Posts: <%= @user.posts.count %></p>
   </div>
   <div class="user-posts">
-    <% if @user.posts.any? %>
+    <% if @posts.any? %>
       <ul class="user-posts-info">
-        <% Post.most_recent_comments(5).each do |post| %>
-        <li>
-          <%= link_to user_post_path(@user, post) do %>
-            <h3><%= post.title %></h3>
-            <p><%= post.text %></p>
-          <% end %>
-        </li>
+        <% @posts.each do |post| %>
+          <li>
+            <%= link_to user_post_path(@user, post) do %>
+              <h3><%= post.title %></h3>
+              <p><%= post.text %></p>
+            <% end %>
 
-  <div class="counters">
-    <li>Comments: <%= post.comment_counter %></li>
-    <li>Likes: <%= post.like_counter %></li>
-  </div>
+            <div class="counters">
+              <li>Comments: <%= post.comment_counter %></li>
+              <li>Likes: <%= post.like_counter %></li>
+            </div>
 
-  <% post.most_recent_comments.each do |comment| %>
-    <div class="comment">
-      <strong><%= comment.user.name %>:</strong>
-      <%= comment.text %>
-    </div>
-  <% end %>
-<% end %>
-
+            <% post.most_recent_comments.each do |comment| %>
+              <div class="comment">
+                <strong><%= comment.user.name %>:</strong>
+                <%= comment.text %>
+              </div>
+            <% end %>
+          </li>
+        <% end %>
       </ul>
 
-      <% if @user.posts.count > 3 %>
+      <% if @posts.count > 3 %>
         <%= link_to 'Show More', user_posts_path(@user) %>
       <% end %>
     <% else %>

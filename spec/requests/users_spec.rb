@@ -1,5 +1,6 @@
 require 'rails_helper'
 
+
 RSpec.describe UsersController, type: :request do
   let(:sample_user_data) do
     {

@@ -1,5 +1,6 @@
 require 'rails_helper'
 
+
 RSpec.describe PostsController, type: :request do
   let(:user) do
     User.create(

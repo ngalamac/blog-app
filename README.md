@@ -88,6 +88,11 @@ rspec
 - GitHub: [ngalamac](https://github.com/ngalamac)
 - LinkedIn: [Ngala Mac](https://www.linkedin.com/in/ngala-mac-872a65220/)
 
+👤 **Mumbere Habert**
+- GitHub: [mumbereh](https://github.com/mumbereh)
+- Twitter: [@mumberehabert1](https://twitter.com/mumberehabert1)
+- LinkedIn: [Mumbere Habert](https://www.linkedin.com/in/mumbere-habert-33898a255/)
+
 
 <!-- FUTURE FEATURES -->
 

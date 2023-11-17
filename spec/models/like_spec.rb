@@ -6,12 +6,12 @@ RSpec.describe Like, type: :model do
 
   describe 'validations' do
     it 'is not valid without a user' do
-      like = Like.new(user: nil, post:)
+      like = Like.new(user: nil, post: post)
       expect(like).not_to be_valid
     end
 
     it 'is not valid without a post' do
-      like = Like.new(user:, post: nil)
+      like = Like.new(user: user, post: nil)
       expect(like).not_to be_valid
     end
   end

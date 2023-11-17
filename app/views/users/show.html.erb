@@ -1,45 +1,47 @@
-<% content_for :head do %>
-  <%= stylesheet_link_tag 'user_show' %>
-<% end %>
-
-<div class="user-profile">
-  <div class='photo-container'>
-    <img src="<%= @user.photo %>" alt="user-img" class="user-photo" />
-  </div>
-  <div class="user-card">
-    <div class="user-info">
-      <h2 class="user-name"><%= @user.name %></h2>
-      <p class="user-post-count">Number of posts: <%= @user.posts_counter %></p>
-    </div>
-  </div>
+<%# <h1>User Profile</h1> %>
+<div class="user-navigation">
+  <a href="<%= users_path %>">
+    <button class="back-btn">⬅</button>
+  </a>
 </div>
-
-<div class="user-bio">
-  <h3>Bio</h3>
-  <p class="bio-text"><%= @user.bio %></p>
-</div>
-
-<div class="post-container">
-  <% @user.recent_posts.each do |post| %>
-    <%= link_to user_post_path(user_id: @user, id: post.id), style: "text-decoration: none;" do %>
-      <div class="single-post">
-        <div class="post-body">
-          <h3 class="post-title"><%= post.title %></h3>
-          <p class="post-text"><%= post.text %></p>
-        </div>
-        <div class="like-comment">
-          <p>
-            <span>Comments: <%= post.comments_counter %></span>, 
-            <span>Likes: <%= post.likes_counter || 0 %></span>
-          </p>
-        </div>
-      </div>
+<section class="user-profile-page">
+  <div class="user-profile">
+    <% if @user.photo.present? %>
+      <%= image_tag @user.photo, alt: @user.name, class: 'user-thumbnail' %>
+    <% else %>
+      <span class="user-thumbnail placeholder">No Photo</span>
     <% end %>
-  <% end %>
-</div>
-
-<%= link_to user_posts_path(id: @user), style: "text-decoration: none;" do %>
-  <div class="button-container">
-    <button>See all posts</button>
+    <p><%= @user.name %></p>
+    <p>Number of Posts: <%= @user.posts.count %></p>
   </div>
-<% end %>
+  <div class="user-bio">
+    <h3>Bio:</h3>
+    <p><%= @user.bio %></p>
+  </div>
+
+  <div>
+    <%= link_to 'Add Post', new_user_post_path(@user), class: 'add-post-button' %>
+  </div>
+  
+  <div class="user-posts">
+    <h2><%= @user.name %>`s posts</h2>
+    <% if @user.posts.any? %>
+      <ul class="user-posts-info">
+        <% @user.recent_posts.limit(3).each do |post| %>
+          <h3><%= post.title %></h3>
+          <li><%= post.text %></li>
+          <div class="counters">
+            <li>Comments:<%= post.comments_counter %></li>
+            <li>Likes:<%= post.likes_counter %></li>
+          </div>
+        <% end %>
+      </ul>
+    <% else %>
+      <p>No posts available.</p>
+    <% end %>
+
+  </div>
+  <div>
+    <%= link_to 'See All Posts', user_posts_path(@user), class: 'see-all-button' %>
+  </div>
+</section>

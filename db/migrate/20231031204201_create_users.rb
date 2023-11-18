@@ -1,11 +1,12 @@
+# db/migrate/20231031204201_create_users.rb
+
 class CreateUsers < ActiveRecord::Migration[7.1]
   def change
     create_table :users do |t|
       t.string :name
       t.string :photo_link
       t.string :bio
-      t.integer :posts_counter, default: 0
-      
+      t.integer :posts_counter, default: 0 # Move 'default: 0' here
       t.timestamps
     end
   end

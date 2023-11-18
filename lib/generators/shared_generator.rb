@@ -1,5 +1,4 @@
 # lib/generators/shared_generator.rb
-
 class SharedGenerator < Rails::Generators::Base
   source_root File.expand_path('templates', __dir__)
 

@@ -1,52 +1,33 @@
-<div class="user-navigation">
-  <a href="<%= user_path(@user) %>">
-    <button class="back-btn">⬅</button>
-  </a>
+<div class="posts-container">
+<div class="users">
+<%= render 'shared/user', user:@user %>
 </div>
-<section class="user-profile-page">
-  <div class='post-user-info'>
-    <% if @user.photo.present? %>
-      <%= image_tag @user.photo, alt: @user.name, class: 'user-thumbnail' %>
-    <% else %>
-      <span class="user-thumbnail placeholder">No Photo</span>
-    <% end %>
-    <p>Name: <%= @user.name %></p>
-    <p>Number of Posts: <%= @user.posts.count %></p>
-  </div>
-  <div class="user-posts">
-    <% if @user.posts.any? %>
-      <ul class="user-posts-info">
-        <% Post.most_recent_comments(5).each do |post| %>
-        <li>
-          <%= link_to user_post_path(@user, post) do %>
-            <h3><%= post.title %></h3>
-            <p><%= post.text %></p>
-          <% end %>
-        </li>
 
-  <div class="counters">
-    <li>Comments: <%= post.comment_counter %></li>
-    <li>Likes: <%= post.like_counter %></li>
-  </div>
+<div class="posts">
+<h2>All Posts</h2>
 
-  <% post.most_recent_comments.each do |comment| %>
-    <div class="comment">
-      <strong><%= comment.user.name %>:</strong>
-      <%= comment.text %>
-    </div>
-  <% end %>
+<%=link_to "Add post", new_user_post_path(@user)%>
+
+<% @posts.each do |post| %>
+<%= render 'shared/post', post: post, user:@user %>
+
+<div class="post-content">
+<%= link_to "Add Comment", new_user_post_comment_path(@user, post) %>
+
+<%= form_with url: user_post_likes_path(post.author.id, post.id) do |form| %>
+
+<%= form.submit 'Like' %>
 <% end %>
 
-      </ul>
-
-      <% if @user.posts.count > 3 %>
-        <%= link_to 'Show More', user_posts_path(@user) %>
+<% if can?(:destroy, @post) %>
+        <%= button_to 'Delete Post', user_post_path(@post.author_id, @post), method: :delete, data: { confirm: 'Are you sure you want to delete this post?' }, class: 'delete-button' %>
       <% end %>
-    <% else %>
-      <p>No posts available.</p>
-    <% end %>
-  </div>
-  <a href="<%= users_path() %>" class='pagination'>
-    <button class='pagination-btn'>Pagination</button>
-  </a>
-</section>
+</div>
+
+<% if post.recent_comments.present? %>
+<% comments = post.recent_comments %>
+<%= render "shared/comments", comments:comments %>
+<% end %>
+<% end %>
+</div>
+</div>

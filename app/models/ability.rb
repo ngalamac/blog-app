@@ -1,4 +1,5 @@
 # app/models/ability.rb
+
 class Ability
   include CanCan::Ability
 
